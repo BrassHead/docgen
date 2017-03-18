@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>DocClass</TITLE>
+<META name="GENERATOR" content="docgen by Brian Bray">
+<style type="text/css">
+  body { max-width:43em; margin-left:auto; margin-right:auto }
+</style>
+</HEAD>
+<BODY BGCOLOR=white>
+<A NAME="DocClass"></A>
+<H1>DocClass</H1>
+<P>
+Represents a class.  Holds the document attributes of the class.
+Owns DocItems for each Variable and Function of the class.
+<DL>
+</DL>
+<H3>DocClass member functions</H3>
+<TABLE COLS=02>
+<TR>
+<TD>
+<A HREF="#getFileName">getFileName()</A>
+</TD><TD>
+Returns the output filename to use.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getFunction">getFunction()</A>
+</TD><TD>
+Returns a pointer to the Function object for the given name.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getVariable">getVariable()</A>
+</TD><TD>
+Returns a pointer to the Variable object for the given name.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#operator<<">operator<<()</A>
+</TD><TD>
+Output the body of a class documentation file.</TD>
+</TR>
+</TABLE>
+<TABLE COLS=02>
+</TABLE>
+
+<HR>
+<A NAME="getFileName"></A>
+<H1>DocClass::getFileName()</H1>
+<P>
+<I>String DocClass::getFileName()
+</I><P>
+Returns the output filename to use.  This doesn't include a directory.
+<P>
+<DL>
+</DL>
+
+<HR>
+<A NAME="getFunction"></A>
+<H1>DocClass::getFunction()</H1>
+<P>
+<I>
+Function* DocClass::getFunction( const String&amp; sName )
+</I><P>
+Returns a pointer to the Function object for the given name.
+Creates the Function object if necessary.
+<DL>
+</DL>
+
+<HR>
+<A NAME="getVariable"></A>
+<H1>DocClass::getVariable()</H1>
+<P>
+<I>
+Variable* DocClass::getVariable( const String&amp; sName )
+</I><P>
+Returns a pointer to the Variable object for the given name.
+Creates the Variable object if necessary.
+<DL>
+</DL>
+
+<HR>
+<A NAME="operator<<"></A>
+<H1>DocClass::operator<<()</H1>
+<P>
+<I>
+ostream&amp; operator&lt;&lt;( ostream&amp; os, const DocClass&amp; cls )
+</I><P>
+Output the body of a class documentation file.
+<DL>
+</DL>
+
+<HR>
+</BODY>
+</HTML>

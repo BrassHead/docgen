@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Project docgen</TITLE>
+<META name="GENERATOR" content="docgen by Brian Bray">
+<style type="text/css">
+  body { max-width:43em; margin-left:auto; margin-right:auto }
+</style>
+</HEAD>
+<BODY BGCOLOR=white>
+<A NAME="docgen"></A>
+<H1>Project docgen</H1>
+<P>
+This program extracts internal program documentation by reading
+specially formatted comments in the source code.  For a description
+of these comments, see the <A HREF="../grammar.html">grammar document.</A>
+<P>
+<DL>
+</DL>
+<H3>Project docgen classes</H3>
+<TABLE COLS=02>
+<TR>
+<TD>
+<A HREF=".html"></A>
+</TD><TD>
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="AttribIterator.html">AttribIterator</A>
+</TD><TD>
+Iterator result of a find or findAll.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="Attribute.html">Attribute</A>
+</TD><TD>
+Represents an Keyword/Value pair.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="DocClass.html">DocClass</A>
+</TD><TD>
+Represents a class.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="DocItem.html">DocItem</A>
+</TD><TD>
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="LexStream.html">LexStream</A>
+</TD><TD>
+An input stream of tokens attached to a file.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="Project.html">Project</A>
+</TD><TD>
+Represents a project, a set of related files.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="Token.html">Token</A>
+</TD><TD>
+A single token from the input stream.</TD>
+</TR>
+</TABLE>
+
+<HR>
+<H3>Project docgen globals</H3>
+<A NAME=""></A>
+<H1></H1>
+<DL>
+</DL>
+<H3> member functions</H3>
+<TABLE COLS=02>
+<TR>
+<TD>
+<A HREF="#main">main()</A>
+</TD><TD>
+</TD>
+</TR>
+</TABLE>
+<TABLE COLS=02>
+</TABLE>
+
+<HR>
+<A NAME="main"></A>
+<H1>::main()</H1>
+<P>
+<I>
+int main(int argc, char* argv[])
+</I><P>
+<DL>
+<DT>Usage:
+<DD>
+docgen &lt;output directory> &lt;file> [&lt;file>...]
+<DL>
+<DT>&lt;output directory>
+<DD>docgen creates html files in this directory.
+<DT>&lt;file>
+<DD>input file name (eg: *.h *.cpp *.cc)
+</DL>
+<P>
+The output directory will be filled with:
+<DL>
+<DT>index.html
+<DD>class list and definition of global routines and variables
+<DT>&lt;class>.htm
+<DD>routine descriptions for each class encountered.
+</DL>
+</DL>
+
+<HR>
+</BODY>
+</HTML>

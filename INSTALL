@@ -1,0 +1,74 @@
+                  DOCGEN installation instructions
+                  ================================
+
+This package has a simple makefile for building, testing, and installing
+the software.
+
+
+The steps of the install process are:
+
+1)  Building
+2)  Testing
+3)  Installation
+
+The installation step is normally done as 'root'.  The other steps can be
+executed by any user account with access to development tools.
+
+
+Building
+========
+
+The BW package must be installed before docgen can be built.  This package
+can be obtained at https://github.com/BrassHead/bw-isolation-layer
+
+
+The build the software, type
+
+	make
+
+
+Testing
+=======
+
+To test the software, type
+
+	make check
+
+The test is simply to run autodoc with it's own source code and compare the
+results against the distribution supplied documentation.
+
+
+Installation
+============
+
+To install the software, type
+
+	make install
+
+This command is normally executed as 'root'.
+
+This installs:
+
+	~/bin/docgen
+
+Usage
+=====
+
+docgen <output directory> <file> [<file>...]
+
+	<output directory> -- docgen creates .htm files in this directory
+
+	<file> -- input file name (eg: *.h *.cpp *.cc)
+
+	The output directory will be filled with:
+                index.html -- class index and globals.
+                <class>.html -- routine descriptions for each class encountered
+
+
+Administrivia
+=============
+
+This package is Copyright © 1998-2017 Brian Bray
+
+and is made available under the MIT license, a copy of which is
+included in the file LICENSE-MIT.txt

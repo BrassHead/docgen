@@ -1,0 +1,22 @@
+Docgen BugList
+
+Uses custom string object. It's not the 90's DAMIT !
+
+When multiple comment blocks for constructors are merged, 
+	it doesn't get all the prototypes.
+The link tag is now redundant
+
+Potential Features:
+
+Use std::Iostream?
+Navigation aids in the resulting .html files
+Option to produce internal or external documentation ("Private:")
+Version identification in Usage
+More control over formatting of each Keyword.  ie:
+	Order
+	Preformatted vs literal vs smartFormat
+	Ability to change names of Prototype: and Description:
+Java compatibility mode
+Auto Create output directory
+Integrate with development environment.
+Smarter detection of "<" as less than vs html tag in attribute values

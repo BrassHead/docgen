@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Project</TITLE>
+<META name="GENERATOR" content="docgen by Brian Bray">
+<style type="text/css">
+  body { max-width:43em; margin-left:auto; margin-right:auto }
+</style>
+</HEAD>
+<BODY BGCOLOR=white>
+<A NAME="Project"></A>
+<H1>Project</H1>
+<P>
+Represents a project, a set of related files...owns DocItems for each
+class found.
+<DL>
+</DL>
+<H3>Project member functions</H3>
+<TABLE COLS=02>
+<TR>
+<TD>
+<A HREF="#filesOut">filesOut()</A>
+</TD><TD>
+Outputs all documentation files for the project into the given
+directory.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getClass">getClass()</A>
+</TD><TD>
+Returns a pointer to the DocClass object for a particular class.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getFileName">getFileName()</A>
+</TD><TD>
+Returns the output filename to use.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getFunction">getFunction()</A>
+</TD><TD>
+Returns a pointer to the Function object for the given name.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getVariable">getVariable()</A>
+</TD><TD>
+Returns a pointer to the Variable object for the given name.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#operator<<">operator<<()</A>
+</TD><TD>
+Output the body of a project file.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#setName">setName()</A>
+</TD><TD>
+Set's project name
+
+</TD>
+</TR>
+</TABLE>
+<TABLE COLS=02>
+</TABLE>
+
+<HR>
+<A NAME="filesOut"></A>
+<H1>Project::filesOut()</H1>
+<P>
+<I>
+void Project::filesOut( const String&amp; sDir )
+</I><P>
+Outputs all documentation files for the project into the given
+directory.
+<P>
+This routine looks after all the file opening and HTML prolog
+and epilog.  The overloaded << operators output individual DocItems
+into the BODY of the HTML output.
+<P>
+Throws if file(s) cannot be opened.
+<DL>
+</DL>
+
+<HR>
+<A NAME="getClass"></A>
+<H1>Project::getClass()</H1>
+<P>
+<I>
+DocClass* Project::getClass( const String&amp; sClass )
+</I><P>
+Returns a pointer to the DocClass object for a particular class.  If the
+class object already exists in this project, returns a pointer to the existing object.
+If not, it creates a new DocClass object.
+<DL>
+</DL>
+
+<HR>
+<A NAME="getFileName"></A>
+<H1>Project::getFileName()</H1>
+<P>
+<I>
+String Project::getFileName() const
+</I><P>
+Returns the output filename to use.  This doesn't include a directory.
+<DL>
+</DL>
+
+<HR>
+<A NAME="getFunction"></A>
+<H1>Project::getFunction()</H1>
+<P>
+<I>
+Function* Project::getFunction( const String&amp; sClass, const String&amp; sName )
+</I><P>
+Returns a pointer to the Function object for the given name.
+Creates the Class object and Function object if necessary.
+<DL>
+</DL>
+
+<HR>
+<A NAME="getVariable"></A>
+<H1>Project::getVariable()</H1>
+<P>
+<I>
+Variable* Project::getVariable( const String&amp; sClass, const String&amp; sName )
+</I><P>
+Returns a pointer to the Variable object for the given name.
+Creates the Class object and Variable object if necessary.
+<DL>
+</DL>
+
+<HR>
+<A NAME="operator<<"></A>
+<H1>Project::operator<<()</H1>
+<P>
+<I>
+ostream&amp; operator&lt;&lt;( ostream&amp; os, const Project&amp; proj )
+</I><P>
+Output the body of a project file.
+<DL>
+</DL>
+
+<HR>
+<A NAME="setName"></A>
+<H1>Project::setName()</H1>
+<P>
+<I>void setName( const String&amp; sName )
+</I><P>
+Set's project name
+<P>
+<DL>
+</DL>
+
+<HR>
+</BODY>
+</HTML>

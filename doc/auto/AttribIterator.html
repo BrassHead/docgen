@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>AttribIterator</TITLE>
+<META name="GENERATOR" content="docgen by Brian Bray">
+<style type="text/css">
+  body { max-width:43em; margin-left:auto; margin-right:auto }
+</style>
+</HEAD>
+<BODY BGCOLOR=white>
+<A NAME="AttribIterator"></A>
+<H1>AttribIterator</H1>
+<P>
+Iterator result of a find or findAll.
+<P>
+Behaves like a pointer to an array of Attributes.
+->keyword() and ->value() return the found values, and ++ steps to the
+next found item.  The default assignment operator,
+and copy constructor can be used to create copies of the result.
+<DL>
+</DL>
+<H3>AttribIterator member functions</H3>
+<TABLE COLS=02>
+<TR>
+<TD>
+<A HREF="#atEof">atEof()</A>
+</TD><TD>
+Tells if iterator points past the end of the list.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#operator++">operator++()</A>
+</TD><TD>
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#operator->">operator->()</A>
+</TD><TD>
+Dereferences the iterator to return the current Attribute.</TD>
+</TR>
+</TABLE>
+<TABLE COLS=02>
+</TABLE>
+
+<HR>
+<A NAME="atEof"></A>
+<H1>AttribIterator::atEof()</H1>
+<P>
+<I>bool AttribIterator::atEof()
+</I><P>
+Tells if iterator points past the end of the list.  This will be true
+after 'find'ing a non-existant keyword or after stepping past the last search
+result.
+<P>
+<DL>
+</DL>
+
+<HR>
+<A NAME="operator++"></A>
+<H1>AttribIterator::operator++()</H1>
+<P>
+<I>++sr
+</I><P>
+<I>sr++
+
+</I><P>
+<P>
+
+<P>
+Steps to next item in found set.
+<DL>
+</DL>
+
+<HR>
+<A NAME="operator->"></A>
+<H1>AttribIterator::operator->()</H1>
+<P>
+<I>Attribute* operator->()
+</I><P>
+<I>Attribute&amp; operator*()
+</I><P>
+Dereferences the iterator to return the current Attribute.
+<P>
+it->value() and (*it).value() will yield the value of the
+current attribute for iterator 'it'.
+Similiarly, it->keyword() and (*it).keyword() will
+yield the keyword string.
+<P>
+<DL>
+</DL>
+
+<HR>
+</BODY>
+</HTML>

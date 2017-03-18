@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>DocItem</TITLE>
+<META name="GENERATOR" content="docgen by Brian Bray">
+<style type="text/css">
+  body { max-width:43em; margin-left:auto; margin-right:auto }
+</style>
+</HEAD>
+<BODY BGCOLOR=white>
+<A NAME=""></A>
+<H1>DocItem</H1>
+<DL>
+</DL>
+<H3>DocItem member functions</H3>
+<TABLE COLS=02>
+<TR>
+<TD>
+<A HREF="#AddRef">AddRef()</A>
+</TD><TD>
+Instance counting	</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#DocItem">DocItem()</A>
+</TD><TD>
+Constructor		</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#Release">Release()</A>
+</TD><TD>
+Instance counting	</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#addAttribute">addAttribute()</A>
+</TD><TD>
+Adds another Keyword attribute for the DocItem.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#clearAttributes">clearAttributes()</A>
+</TD><TD>
+Initializer		</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#find">find()</A>
+</TD><TD>
+Finds attributes stored under keyword.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#findAll">findAll()</A>
+</TD><TD>
+Returns all attributes in the original insert order.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getTitle">getTitle()</A>
+</TD><TD>
+Returns the descriptive title of the item.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#operator<<">operator<<()</A>
+</TD><TD>
+Generic output of a DocItem attributes
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#setDefaultImpliedAttribute">setDefaultImpliedAttribute()</A>
+</TD><TD>
+Sets the "*Description" attribute attribute to the default "".</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#setDefaultLinkName">setDefaultLinkName()</A>
+</TD><TD>
+Sets the LinkName to a default value (ie: same as ItemName)
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#setDefaultPrototype">setDefaultPrototype()</A>
+</TD><TD>
+Sets the "*Prototype" attribute to default value ("")
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#setImpliedAttribute">setImpliedAttribute()</A>
+</TD><TD>
+Sets the "*Description" attribute
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#setLinkName">setLinkName()</A>
+</TD><TD>
+Sets the LinkName for this DocItem
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#setPrototype">setPrototype()</A>
+</TD><TD>
+Sets the "*Prototype" attribute
+</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#~DocItem">~DocItem()</A>
+</TD><TD>
+Destructor		</TD>
+</TR>
+</TABLE>
+<TABLE COLS=02>
+</TABLE>
+
+<HR>
+<A NAME="AddRef"></A>
+<H1>DocItem::AddRef()</H1>
+<P>
+<I>
+unsigned long DocItem::AddRef()
+</I><P>
+Instance counting	<DL>
+</DL>
+
+<HR>
+<A NAME="DocItem"></A>
+<H1>DocItem::DocItem()</H1>
+<P>
+<I>
+DocItem::DocItem()
+	</I><P>
+Constructor		<DL>
+</DL>
+
+<HR>
+<A NAME="Release"></A>
+<H1>DocItem::Release()</H1>
+<P>
+<I>
+unsigned long DocItem::Release()
+</I><P>
+Instance counting	<DL>
+</DL>
+
+<HR>
+<A NAME="addAttribute"></A>
+<H1>DocItem::addAttribute()</H1>
+<P>
+<I>void addAttribute( const String&amp; sKeyword, const String&amp; sValue );
+</I><P>
+<I>void addAttribute( const Attribute&amp; attr );
+</I><P>
+Adds another Keyword attribute for the DocItem.
+<P>
+<DL>
+</DL>
+
+<HR>
+<A NAME="clearAttributes"></A>
+<H1>DocItem::clearAttributes()</H1>
+<P>
+<I>
+void DocItem::clearAttributes()
+</I><P>
+Initializer		<DL>
+</DL>
+
+<HR>
+<A NAME="find"></A>
+<H1>DocItem::find()</H1>
+<P>
+<I>
+AttribIterator DocItem::find( const String&amp; sKeyword ) const
+</I><P>
+Finds attributes stored under keyword.
+<P>
+The Keyword is case insensitive.  The attributes are returned in
+the order of original insertion.
+<DL>
+</DL>
+
+<HR>
+<A NAME="findAll"></A>
+<H1>DocItem::findAll()</H1>
+<P>
+<I>
+AttribIterator DocItem::findAll() const
+</I><P>
+Returns all attributes in the original insert order.
+<DL>
+</DL>
+
+<HR>
+<A NAME="getTitle"></A>
+<H1>DocItem::getTitle()</H1>
+<P>
+<I>
+String DocItem::getTitle() const
+</I><P>
+Returns the descriptive title of the item.
+<P>
+This is the contents of the "Title" attribute if any.  If not defined,
+this is the first sentence of the first attribute defined.
+<DL>
+</DL>
+
+<HR>
+<A NAME="operator<<"></A>
+<H1>DocItem::operator<<()</H1>
+<P>
+<I>
+ostream&amp; operator&lt;&lt;( ostream&amp; os, const DocItem&amp; di )
+</I><P>
+Generic output of a DocItem attributes
+<DL>
+</DL>
+
+<HR>
+<A NAME="setDefaultImpliedAttribute"></A>
+<H1>DocItem::setDefaultImpliedAttribute()</H1>
+<P>
+<I>
+void DocItem::setDefaultImpliedAttribute()
+</I><P>
+Sets the "*Description" attribute attribute to the default "".
+<DL>
+</DL>
+
+<HR>
+<A NAME="setDefaultLinkName"></A>
+<H1>DocItem::setDefaultLinkName()</H1>
+<P>
+<I>
+void DocItem::setDefaultLinkName()
+</I><P>
+Sets the LinkName to a default value (ie: same as ItemName)
+<DL>
+</DL>
+
+<HR>
+<A NAME="setDefaultPrototype"></A>
+<H1>DocItem::setDefaultPrototype()</H1>
+<P>
+<I>
+void DocItem::setDefaultPrototype()
+</I><P>
+Sets the "*Prototype" attribute to default value ("")
+<DL>
+</DL>
+
+<HR>
+<A NAME="setImpliedAttribute"></A>
+<H1>DocItem::setImpliedAttribute()</H1>
+<P>
+<I>
+void DocItem::setImpliedAttribute( const String&amp; sValue )
+</I><P>
+Sets the "*Description" attribute
+<DL>
+</DL>
+
+<HR>
+<A NAME="setLinkName"></A>
+<H1>DocItem::setLinkName()</H1>
+<P>
+<I>
+void DocItem::setLinkName( const String&amp; sLinkName )
+</I><P>
+Sets the LinkName for this DocItem
+<DL>
+</DL>
+
+<HR>
+<A NAME="setPrototype"></A>
+<H1>DocItem::setPrototype()</H1>
+<P>
+<I>
+void DocItem::setPrototype( const String&amp; sValue )
+</I><P>
+Sets the "*Prototype" attribute
+<DL>
+</DL>
+
+<HR>
+<A NAME="~DocItem"></A>
+<H1>DocItem::~DocItem()</H1>
+<P>
+<I>
+DocItem::~DocItem()
+</I><P>
+Destructor		<DL>
+</DL>
+
+<HR>
+</BODY>
+</HTML>

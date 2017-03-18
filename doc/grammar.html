@@ -1,0 +1,344 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>Docgen Grammar</TITLE>
+</HEAD>
+<BODY BGCOLOR=#FFFFFF>
+
+<CENTER>
+<H1>Docgen Grammar</H1>
+<P>
+This document describes the grammar used to extract comments from
+source code by the Docgen utility.
+<P>
+<FONT SIZE=1>
+&copy; 1997-2017 Brian Bray.
+<a href="../LICENSE-MIT.txt">Legal Notice.</a>
+</FONT>
+</CENTER>
+
+<h3>Project goals</h3>
+<P>
+The docgen utility constructs HTML documentation files extracted from 
+specially commented C++ source files.  The goals of the project are:
+<UL>
+<LI>Generates good looking technical documentation with information
+similar to CRC cards.
+<LI>Should not require a detailed parser of C++ in order to implement.
+<LI>The comments in the source should look natural and stand on their own.
+<LI>The developer should not need to retype the function prototype in the
+comments to document simple routines.
+<LI>HTML directives need to be accessible to the developer to customize the
+appearance of specific items.
+</UL>
+
+<h3>Usage</h3>
+
+<p>
+<CODE>docgen <u>directory</u> <u>file</u> [<u>file</u>...]</CODE>
+<p>
+docgen reads C++ source files and extracts specially formatted documentation
+into html output files.  Each <code><u>file</u></code> argument is a C++ 
+source file.  Output is placed in the specified <code><u>directory</u></code>.
+<p>
+One output file is created for each C++ class.  An "index.html" file is
+created containing an index to all classes and the documentation for global
+routines.
+<p>
+docgen reads comment blocks enclosed by /*: and */ placed just in front of
+function or variable definitions.
+
+<p>
+Each comment block documents a single function, variable, class, 
+or the project as
+a whole.  The block contains fields of the form 
+"Attribute: value" which may extend 
+over several lines.  Any attribute names can be used.  Some attribute names
+are treated specially:
+
+<dl>
+<dt>Prototype
+<dd>If no prototype field is present, docgen reads the source code 
+following the comment block to get the function prototype.  The Prototype
+field(s) will be listed first in the output file.
+
+<dt>Description
+<dd>This field will be listed after the prototype(s) in the output.  The first
+sentence of the description will also be used in indices.
+</dl>
+
+Other attributes appear after the description in the order enterred.
+<p>
+The first Attribute must be one of "Project", "Class", "Function:, 
+"Member", "Routine",
+or "Variable" with a value of the fully qualified name of the item.  
+"Function", "Routine", and "Member" are synonymous.
+Text after the function, variable, or project name will be placed in the
+description field.
+
+
+<h3>Example 1</h3>
+
+
+<p>
+<PRE>
+/*: Function: foo()
+
+    Computes the foo function.
+
+    Returns: FOO_SUCCESS or FOO_FAILURE
+*/
+int foo(char* bar, int n)
+{
+...
+</PRE>
+<p>
+This example documents a global function "foo".  The description is "Computes
+the foo function".  The prototype will be taken from the code that follows
+the comment block.
+
+<h3>Example 2</h3>
+<p>
+<PRE>
+/*: routine String::String
+
+  Constructors.   Parameters specify an initial string in one of a variety
+  of formats or give an integer for the initial capacity.
+
+  Prototype: String( const int length=0 )
+  Prototype: String( const String& str );
+  Prototype: String( const char* psz );
+  Prototype: String( const char* ps, const int len );
+*/
+</PRE>
+This example shows how to use multiple prototypes to document an overloaded
+C++ member function.
+
+<p>
+Additional examples can be found in the docgen source code or in the bw source
+code.  Sample output can be <a href="auto/index.html">viewed here</a>.
+
+<h3>Internal documentation</h3>
+<P>
+The heirarchy of the object model of the utility is:
+<PRE>
+<a href="auto/DocItem.html">DocItem</a>
+	<a href="auto/Project.html">Project</a>
+	<a href="auto/DocClass.html">DocClass</a>
+	Member
+		Function
+		Variable
+
+<a href="auto/Attribute.html">Attribute</a>
+</PRE>
+The relationships are:
+<PRE>
+              Project                          DocItem
+                 ^                                ^
+                 |                                |
+        -------------                             |
+        |           |                             |
+        V           |                             V
+        V           |                             V
+    DocClass        |                         Attribute
+        ^           |      
+        |           |      
+        --------    |                Note: DocItem is the superclass
+               |    |                      of every class on the left.
+               V    V
+               V    V
+               Member
+                 |
+                 |
+                / \
+        -------------------
+        |                 |
+        |                 |
+     Function          Variable
+</PRE>
+<P>
+Each object has an arbitrary number of attributes extracted from the
+source, which are formatted into the HTML documentation output files.
+One file is produced for the project which contains links to the classes
+and the descriptions of the globals, and one for
+each class which contains decriptions of its members.
+
+<h3>Grammar</h3>
+<P>
+The input format is described by these grammar rules.
+<PRE><FONT FACE=Arial><I>
+Goal:
+	DocItem
+
+DocItem:
+	Starter AttributeListOpt EndSymbol PrototypeOpt
+
+Starter:
+	StartSymbol DocItemTypeAndName LinkNameOpt
+
+DocItemTypeAndName:
+	</I><B>Project</B><I> ColonOpt ProjectName
+	</I><B>Class</B><I> ColonOpt ClassName
+	</I><B>Function</B><I> ColonOpt FunctionName
+	</I><B>Member</B><I> ColonOpt FunctionName
+	</I><B>Routine</B><I> ColonOpt FunctionName
+	</I><B>Variable</B><I> ColonOpt VariableName
+	FunctionName
+
+ProjectName:
+	Identifier
+
+ClassName:
+	Identifier
+
+FunctionName:
+	DoubleColonOpt FunctionIdentifier ParensOpt
+	ClassName DoubleColon FunctionIdentifier ParensOpt
+
+VariableName:
+	DoubleColonOpt Identifier
+	ClassName DoubleColon Identifier
+
+LinkName:
+	Hash Identifier
+
+AttributeList:
+	ImpliedDescriptionAttributeOpt KeywordAttributeList
+
+ImpliedDescriptionAttribute:
+	AttributeText
+
+KeywordAttributeList:
+	KeywordAttribute KeywordAttributeListOpt
+
+KeywordAttribute:
+	Keyword AttributeText
+
+Keyword:
+	LeadingWhitespace Identifier Colon
+
+----------vvvv  Lexical   vvvv-------------^^^^  Parser  ^^^^--------------
+
+AttributeText:
+	any sequence of source characters before the next Keyword or EndSymbol
+
+Prototype:
+	any sequence of source character before the next ";", ":", or "{" but
+			not "::"
+
+FunctionIdentifier:
+	Identifier
+	</I><B>operator</B><I> Operator
+	</I><B>operator (</B><I> Identifier PointerOperatorOpt</I><B> )</B><I>
+	</I><B>~</B><I> Identifier
+
+Operator:
+	</I><B>()</B><I>
+	any sequence of </I><B>+ - * / % ^ &amp; | ~ ! = &lt; > [ ]</B><I>
+
+PointerOperator: one of
+	</I><B>* &amp;</B><I>
+
+StartSymbol:
+	</I><B>/*:</B><I>
+
+EndSymbol:
+	</I><B>*/</B><I>
+
+Colon:
+	</I><B>:</B><I>
+
+DoubleColon:
+	</I><B>::</B><I>
+
+Parens:
+	</I><B>()</B><I>
+
+Hash:
+	</I><B>#</B><I>
+
+Identifier:
+	AlphaCharacter AlphanumericCharacterListOpt
+
+AlphanumericCharacterList:
+	AlphanumericCharacter AlphanumericCharacterListOpt
+
+AlphaCharacter: one of
+	</I><B>A B C D E F G H I J K L M N O P Q R S T U V W X Y Z _ a b c d e f
+			g h i j k l m n o p q r s t u v w x y z</B><I>
+
+AlphanumericCharacter: one of
+	AlphaCharacter </I><B>0 1 2 3 4 5 6 7 8 9</B><I>
+
+LineBreak: one of
+	</I><B>'\r' '\n'</B><I>
+
+Whitespace: any sequence of
+	</I><B>' ' '\r' '\n' '\t' '\f' '\v'</B><I>
+
+LeadingWhitespace:
+	LineBreak LeadingWhitespace
+
+LeadingWhitespace: any sequence of
+	Whitespace Star Slash (except </I><B>* /</B><I>)
+
+Star:
+	</I><B>*</B><I>
+
+Slash:
+	</I><B>/</B><I>
+
+</I></FONT></PRE>
+Notes:
+<OL>
+<LI>Within a comment block, leading <I>Whitespace</I>, <I>Star</I>s 
+and <I>Slash</I>es are ignored, unless they form an <I>EndSymbol</I>.
+<LI>AttributeNames must be at the beginning of a line (ignoring whitespace
+and stars)
+<LI>There is special processing for the <I>Prototype</I> field and the Prototype:
+attribute.  '&lt;' and '&amp;'   
+will be replaced by "&amp;lt;" and "&amp;amp;" respectively.
+These are not treated specially elsewhere within the comment block, so if a developer 
+wants an '&lt;' or '&amp;' in the HTML output, they need to code these as 
+&amp;lt; or &amp;amp;.  Also, the first occurance of <I>ClassName</I>:: will
+be deleted in the extracted <I>Prototype</I> field, but not the Prototype:
+attribute.
+<LI>In order to document conversion operators, the syntax is slightly
+different than C++.  In C++, this is indicated by <B>operator</B> followed
+by the type.  In the <I>FunctionIdentifier</I> indicate this by a single type
+followed optionally by a * or &amp; within parenthesis. There can be no intervening
+spaces within this sequence (since it is handled by the lexical scanner).
+<LI>If unspecified, the <I>LinkName</I> defaults to the final identifier
+in the <I>ProjectName, ClassName, FunctionName,</I> or <I>VariableName</I>.
+Linknames are used as the filenames for Projects and Classes and for HTML
+anchor links for Members. Linknames are provided to distinguish between 
+overloaded functions in the member index and for filename control.
+<LI>The <I>ProtoTypeOpt</I> is only extracted for Members and only if no
+Prototype: keyword is encountered within the comment block.
+<LI><I>FunctionName</I>s and <I>VariableName</I>s are global unless there is
+a leading <I>Identifier</I>
+<LI>Certain attributes have semantic significance because they are used by
+the output generator:
+<DL>
+<DT>Description:
+<DD>This attribute is output before the index for Projects and Classes and after
+the prototype for Members.  If no Title: attribute is provided, the leading
+characters in the description up to the first '.' or <I>LineBreak</I> are 
+used for the Title.
+<DT>Title:
+<DD>Used in indexes and HTML page titles.
+<DT>Prototype:
+<DD>If present, overrides the prototype extracted from the source code following
+the comment.
+</DL>
+<LI>The attribute names with special meaning can be changed using an attribute
+configuration table read on startup [Note: this feature is not yet 
+implemented].  This table also describes how to format
+each attribute.  Thus, "Title:" could be coded as "Purpose:".
+<LI>Case is not significant in the keywords.  Thus "class", "CLASS" and "Class"
+are all acceptable for the class keyword.
+</OL>
+
+
+</BODY>
+</HTML>

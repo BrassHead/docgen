@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Attribute</TITLE>
+<META name="GENERATOR" content="docgen by Brian Bray">
+<style type="text/css">
+  body { max-width:43em; margin-left:auto; margin-right:auto }
+</style>
+</HEAD>
+<BODY BGCOLOR=white>
+<A NAME="Attribute"></A>
+<H1>Attribute</H1>
+<P>
+Represents an Keyword/Value pair.  The Keyword and Value are strings
+associated with a particular DocItem.  The default destructor,
+copy constructor, and assignment operator are used.
+<DL>
+</DL>
+<H3>Attribute member functions</H3>
+<TABLE COLS=02>
+<TR>
+<TD>
+<A HREF="#Attribute">Attribute()</A>
+</TD><TD>
+Constructors.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#keyword">keyword()</A>
+</TD><TD>
+Returns keyword of the attribute.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#operators">operators()</A>
+</TD><TD>
+Comparison operators.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#value">value()</A>
+</TD><TD>
+Returns Value of the attribute.</TD>
+</TR>
+</TABLE>
+<TABLE COLS=02>
+</TABLE>
+
+<HR>
+<A NAME="Attribute"></A>
+<H1>Attribute::Attribute()</H1>
+<P>
+<I>Attribute()
+</I><P>
+<I>Attribute( const String&amp; sKeyword, const String&amp; sValue )
+</I><P>
+Constructors.  Initializes keyword and value to null or given values.
+<P>
+<DL>
+</DL>
+
+<HR>
+<A NAME="keyword"></A>
+<H1>Attribute::keyword()</H1>
+<P>
+<I>String&amp; keyword()
+</I><P>
+Returns keyword of the attribute.
+<P>
+<DL>
+</DL>
+
+<HR>
+<A NAME="operators"></A>
+<H1>Attribute::operators()</H1>
+<P>
+<I>bool operator==( const Attribute&amp; attr ) const
+</I><P>
+<I>bool operator!=( const Attribute&amp; attr ) const
+</I><P>
+<I>bool operator&lt;( const Attribute&amp; attr ) const
+</I><P>
+<I>bool operator>( const Attribute&amp; attr ) const
+
+</I><P>
+Comparison operators.  These are needed to put Attributes into
+std::lists.
+<P>
+<DL>
+</DL>
+
+<HR>
+<A NAME="value"></A>
+<H1>Attribute::value()</H1>
+<P>
+<I>String&amp; value()
+</I><P>
+Returns Value of the attribute.
+<P>
+<DL>
+</DL>
+
+<HR>
+</BODY>
+</HTML>

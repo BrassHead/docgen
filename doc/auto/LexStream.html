@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>LexStream</TITLE>
+<META name="GENERATOR" content="docgen by Brian Bray">
+<style type="text/css">
+  body { max-width:43em; margin-left:auto; margin-right:auto }
+</style>
+</HEAD>
+<BODY BGCOLOR=white>
+<A NAME="LexStream"></A>
+<H1>LexStream</H1>
+<P>
+An input stream of tokens attached to a file.
+<P>
+Tokenizes input steam for parsing inline documentation.
+Ignores preprocessor directives.  Goal directed.
+<DL>
+</DL>
+<H3>LexStream member functions</H3>
+<TABLE COLS=02>
+<TR>
+<TD>
+<A HREF="#ctor2">LexStream()</A>
+</TD><TD>
+
+Opens file for Lexical scanning.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#atEof">atEof()</A>
+</TD><TD>
+End of File indicator	</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getAttributeText">getAttributeText()</A>
+</TD><TD>
+Returns all characters up to, but not including next Keyword,
+EndSymbol, or EOF.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getPrototype">getPrototype()</A>
+</TD><TD>
+Get function prototype following comment block.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getStartSymbol">getStartSymbol()</A>
+</TD><TD>
+Finds the next special comment start symbol "/ * :" in the text.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#getToken">getToken()</A>
+</TD><TD>
+Returns the next token in the input stream.</TD>
+</TR>
+<TR>
+<TD>
+<A HREF="#peekToken">peekToken()</A>
+</TD><TD>
+Returns the next token in the input stream without advancing the stream.</TD>
+</TR>
+</TABLE>
+<TABLE COLS=02>
+</TABLE>
+
+<HR>
+<A NAME="ctor2"></A>
+<H1>LexStream::LexStream()</H1>
+<P>
+<I>
+LexStream::LexStream( const char* fileName )
+	</I><P>
+<I>
+LexStream::LexStream
+(
+    std::ifstream&amp; fInput
+)
+	</I><P>
+
+Opens file for Lexical scanning.
+<P>
+<P>
+
+<P>
+Opens token stream on existing istream.
+<P>
+<DL>
+<DT>Throws:
+<DD>if file does not exist
+<DT>Requires:
+<DD>fInput is an open istream positioned for reading, no other code should manipulate
+'fInput' until the LexStream is deleted.  Caller must close/delete the stream after use.
+</DL>
+
+<HR>
+<A NAME="atEof"></A>
+<H1>LexStream::atEof()</H1>
+<P>
+<I>
+bool LexStream::atEof()
+</I><P>
+End of File indicator	<DL>
+</DL>
+
+<HR>
+<A NAME="getAttributeText"></A>
+<H1>LexStream::getAttributeText()</H1>
+<P>
+<I>
+void LexStream::getAttributeText( Token&amp; tok )
+</I><P>
+Returns all characters up to, but not including next Keyword,
+EndSymbol, or EOF.
+<DL>
+</DL>
+
+<HR>
+<A NAME="getPrototype"></A>
+<H1>LexStream::getPrototype()</H1>
+<P>
+<I>
+void LexStream::getPrototype( Token&amp; tok )
+</I><P>
+Get function prototype following comment block.
+<P>
+This gets all characters until the next ';', ':', EndOfFile or '{',
+but it's not terminated by '::'.
+<DL>
+</DL>
+
+<HR>
+<A NAME="getStartSymbol"></A>
+<H1>LexStream::getStartSymbol()</H1>
+<P>
+<I>
+void LexStream::getStartSymbol( Token&amp; tok )
+</I><P>
+Finds the next special comment start symbol "/ * :" in the text.
+<P>
+<DL>
+</DL>
+
+<HR>
+<A NAME="getToken"></A>
+<H1>LexStream::getToken()</H1>
+<P>
+<I>
+void
+LexStream::getToken
+(
+    Token&amp; tok
+)
+</I><P>
+Returns the next token in the input stream.
+<P>
+A token is one of:
+<UL>
+<LI>	End of file
+<LI>	A symbol used within comments (ie: "* /", ":", "::" "()" or "#")
+<LI>	A keyword used within comments (eg: "Description: at the start of a line)
+<LI>	An identifier (an alphanumeric sequence, or "operator" followed by some symbols)
+<LI>	Text (a sequence of arbitrary characters terminated by a keyword if
+scanning AttributeText or a ":", "{" or ";"  if scanning a prototype.)
+</UL>
+<P>
+See the Grammar rules document for details.
+<DL>
+</DL>
+
+<HR>
+<A NAME="peekToken"></A>
+<H1>LexStream::peekToken()</H1>
+<P>
+<I>
+void LexStream::peekToken( Token&amp; tok )
+</I><P>
+Returns the next token in the input stream without advancing the stream.
+<DL>
+</DL>
+
+<HR>
+</BODY>
+</HTML>
